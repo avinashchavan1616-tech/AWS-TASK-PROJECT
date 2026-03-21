@@ -1,0 +1,10 @@
+    1  yum uodate -y
+    2  update -y
+    3  yum update -y
+    4  yum install apache2 -y
+    5  yum install httpd -y
+    6  systemctl start httpd 
+    7  systemctl enable httpd
+    8  systemctl status httpd
+    9  vim /var/www/html/index.html
+   10  history
