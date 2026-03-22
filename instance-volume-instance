@@ -1,0 +1,45 @@
+*command to create partition* 
+
+create instance 1 
+create volume 
+atach instance to valume 
+lanch instance 
+
+lsblk (check volume storege)
+fdisk /dev/nvme1n1 (name of partition)
+m (check)
+n (it will ask which type)
+enter (p-primary-extended)
+p or enter hit 
+1 give m (1 or 4)
+1st secter enter 
+last secter give storege (+ -)
+w (save)
+lsblk (check)
+
+*formating type command*
+
+mkfs.ext2 /dev/nvme1n1p2
+blkid (check extention)
+
+*mount command*
+
+
+mount /dev/nvme1n1p2 /mnt=location
+ls /mnt 
+create file and floder
+add data
+lsblk(check)
+
+*unmount command*
+umount /dev/nvme1n1p2
+
+detach volume to 1st instance 
+
+create a 2nd instance 
+atach volume 
+and check the same data 
+
+
+done
+
