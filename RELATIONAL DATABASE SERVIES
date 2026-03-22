@@ -1,0 +1,73 @@
+RDS : RELATIONAL DATABASE SERVIES
+
+apt update -y
+
+apt install mariadb-server -y
+
+systemctl start Mariadb
+
+systemctl enable Mariadb
+
+systemctl status MariaDB
+
+mysql_secure_installation
+
+mysql --version
+
+apt install mariadb-client
+
+mysql -h (end point) -u admin -p[password]
+
+show databases;
+
+create database awsapp;
+
+use awsapp;
+
+create table student (roll int, name varchar(10),course varchar(10),fees int);
+
+show table;
+
+exampale,
+insert into student values (100,'mayur','cdec',80000);
+
+select * from student;
+
+select * from where name = 'mayur';
+
+exit
+
+mysqldump -h [end point] -u admin -p[password] awsapp > /mnt/aws.bkp.sql
+ 
+check
+cd /mnt
+cat /mnt/aws.bkp.sql
+
+
+login to MariaDB
+
+mysql -h [end point] -u admin -p[passwprd]
+
+drop database awsapp;
+
+show databases;
+
+create database maheshapp;
+
+show databases
+
+exit
+
+mysql -h [end point] -u admin -p[passwprd] maheshapp < /mnt/aws.bkp.sql
+
+login to MariaDB
+
+mysql -h [end point] -u admin -p[password]
+
+show databases;
+
+use maheshapp;
+
+select * from student
+
+
