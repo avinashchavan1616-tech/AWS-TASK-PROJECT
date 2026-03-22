@@ -1,0 +1,102 @@
+pearing connection task 
+
+1) create a vpc 
+(ipv4 CDIR block = 10.0.0.0/16)
+
+2) create 2 subnet on that vpc 
+a) public subnet 
+b) private subnet 
+
+ipv4 subnet CIDR block
+
+a) for public subnet = 10.0.0.0/20
+b) for private subnet =10.0.16.0/20
+
+selecting public subnet =action =edit subnets setting =enable auto-assing public ipv4 address(select)save
+
+3) go to ec2  =security group =create a security group =edit inbound rules (add rule) =custom icmp ipv4 (type)  
+ssh =source (anywhere ipv4) ssh =port ranges 22 =(anywhere ipv4) source =save rules
+
+note
+while creating security group add vpc that you created.
+
+4) create a internet gateway (in vpc) =select it =action =attch to vpc 
+
+5) create 2 instance : 1) public instance 2) private instance 
+ 
+  in network settings (while creating instance) =edits =vpc chang (add your creting vpc)
+=subnet 1)when you are creting public instance select public subnet 
+        2)when you are creating private instance select private subnet=auto assing 
+public ip =a) enable for public 
+           b) disable for private 
+=security groups :- select your created existing group =lanch instance 
+
+go to vpc =route table =select route table =in description (downward)near details thrers a route select it = in right corner (edits routes) select it =add route -0.0.0.0/10
+=target (interent getawy) (igw) =save changes go to ec2 =connect public instance with terminal and use following instructions 
+ 
+sudo -i 
+apt update 
+vim .key.pem (creates a file)
+paste the key pair into key.pem =save 
+change permission 
+=chmod 600 key.pem
+ssh -i key.pem ubuntu@past private ipv4
+yes
+ip addr =to check private ip if it show private ip then it is connected 
+
+6) go to vpc =create NAT gateways 
+   1)give name 
+   2)select zonal 
+   3)subnet =select public subnet bcz public have internet private not
+   4)allocate elastic ip =creted
+7)created new route table =1)name 2)vpc =done 
+  then select it =route =edits routs =add route =destination =0.0.0.0/0 =target-nat gateway =save changes
+ 
+again select it =near route there a subnet association click it =edit subnet association =select private subnet 
+=save association
+go back to ec2  =connect public instance with terminal and use following
+sudo -i 
+ping 8.8.8.8  =to just check internet connectivity
+ctrl+c =stop the procces
+
+8)go to vpc =create vpc at different region (ohio)
+  1)vpc only =name 
+  2)give vpc ipv4 cidr
+=192.168.0.0/16
+ 3)created =copy vpc id 
+ 
+9) create a private subnet 
+   1) select your vpc 
+   2) name 
+   3) ipv4 subnet cidr block 
+ ==192.168.0.0/20
+
+10) create a private instance =network settings =change vpc =change subnet =disable =select your security group =done 
+
+11) go to main region (sydney)
+   1) vpc 
+   2) pearing connection =create =
+    a)name
+    b)select vpc
+   3)account =my account 
+   4)region =another 
+   5) select region
+   6)paste vpc id of different region (ohio)
+   7)created pearing connection
+
+12) go to ohio region =vpc =pearing connection =select pending request =action=accept
+
+13) go to main region (Sydney)
+    vpc=route tables =select route table where you give target nat gateway=route =edits routes =add route =192.168.0.0/20=target -pearing connection=save 
+
+14) go to ohio region 
+   vpc =route tables =select route tables =route tables =edits route =add route =10.0.0.0//20 =target =pearing connection =save  
+
+15) go to ec2 =copy private instance ipv4 address 
+
+16) go to main region (sydney)
+    connect public instance with terminal and follow instruction 
+
+sudo -i
+apt update 
+ping ==paste private instance ipv4 address of another region (ohio)
