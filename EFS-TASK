@@ -1,0 +1,26 @@
+create a file from (EFS)
+create a instance 
+apt update/yum update -y
+apt install nfs-common -y for ubuntu
+yum install nfs-utils -y for amezon
+mount -a 
+vim /etc/fstab ( for permant mounting)
+(DNS:/ /mnt nfs4 defaults 0 0) 
+df -hT (to cheack a mount details)
+cd /mnt
+add data 
+
+
+open 2nd instance 
+
+apt update -y
+apt install nfs-common
+mount -a
+vim /etc/fstab
+(DNS:/ /mnt nfs4 defults 0 0)
+mount -a 
+ls (cheack the file,folder)
+
+done
+
+
