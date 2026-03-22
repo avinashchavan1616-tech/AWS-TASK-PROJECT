@@ -1,0 +1,87 @@
+*HOW TO CREATE APPLICATION LOAD BALENCER*
+
+Create 3 instance 1) home 2) mobile 3) clothes 
+add security group of allowing http(80)
+
+1st server home :- 
+
+#!/bin/bash 
+apt update -y
+apt install apache2 -y
+systemctl start apache2 
+systemctl enable apache2 
+echo "<h1> welcome to home page"> /var/www/html/index.html
+
+2nd server mobile :- 
+
+#!/bin/bash
+apt update -y
+apt install apache2 -y
+mkdir /var/www/html/mobile 
+systemctl start apache2 
+systemctl enable apache2 
+echo "<h1> hello this is mobile page"> /var/www/html/mobile/index.html
+
+3rd server clothes 
+
+#!/bin/bash 
+apt update -y
+apt install apache2 -y
+mkdir /var/wwww/html/clothes
+systemctl start apache2 
+systemctl enable apache2 
+echo "<h1> clothes page"> /var/www/html/clohes/index.html
+
+*target group*
+
+1) ec2---> load balencer ---> create ---> type ---> application balencer (ALB)
+2) EC2---> load balencing ---> target group
+   create target group for Home
+
+create--->  chose traget type targate group --->target group name  
+eg Tg-Home vpc---> Health Check-Next--->Add insteince (Home instance)--->click include as pending below--->create 
+
+3) a) create target group for Tg-mobile
+follow all steps given as above men health check---> Health
+Check path--->/mobile/
+
+4) create target group for Tg-clothes
+All steps are same only---> Health check => path=/clothes/*
+
+5)  Application Load Balancer
+
+1 Load Balancer Name:-MY ALB
+
+2 5 chemes
+
+3 IPV4
+
+4 Network mapping
+
+5 Az---> select All Az given there
+
+6 security group---> must have http 80 [I have All traffic]
+
+7 Default action---> forward to T_G
+
+8 target group---> Tg-home [only select one]
+
+9 create load Balancer.
+hit dns page to google 
+
+10 enter to load balencer ---> my-alb 
+   1] listers and routing ---> click on http 80
+      add rule 
+      name and tag ---> mobile 
+      add condition---> path [selected by dragdown/mobile*] 
+    forward to t-g---> tg-mobile 
+    priority [2]---> next ---> review ---add 
+
+    2] add rule ---> 
+      name---> tag--->clothes
+      cond---> path---> /clothes
+              ---> tg-clothes
+              ---> priority{3}
+              ---> next---> add 
+
+  copy alb dns name and hit the web tag in new tab. 
