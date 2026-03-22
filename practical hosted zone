@@ -1,0 +1,25 @@
+Step 1- create one instance 
+
+step 2- create hosted---> zone---> domain name---> public hosted zone--->create hosted zone 
+
+Step 3- create record---> copy paste public id ---> record type A create records in hostinger ---> domain ---> copy paste 
+in-ns4 copy paste in hostinger save change 
+
+connect instance 
+
+sudo -i
+apt update 
+systemctl start apache2 
+systenctl enable apache2 
+systemctl status apache2 
+vim /var/www/html/index.html---> inpute code 
+
+copy your domain name webpage and hit 
+
+
+
+x+
+
+step5:-properties Static webhost edit index docume index.html error(error.html) -> save changes.
+
+step6:- Copy DNS Name paste an web done.
