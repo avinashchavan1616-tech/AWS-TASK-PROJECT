@@ -1,0 +1,20 @@
+1} create instance in ec2 (http 80 port)
+   (advanced deatils---> user data)
+    ---> #!/bin/bash 
+         apt update -y 
+         apt install apache 2 -y
+         systemctl start apache 2
+         echo "<h1> hello this is server"> /var/www/html/index.html
+lanch instance 
+
+lanch load balencer 
+
+2} ec2---> load balencer ---> create ---> lb type ---> select ---> classic lb ---> create ---> name ---> my-alb
+network mapping:- vpc---> az---> security group (allow all traffic main http) ---> helth ---> check ---> advanced
+[optional]---> add instance ---> creare lb 
+
+3} select---> details ---> dns name (copy)
+---> open new tab and past and hit web page 
+
+
+
