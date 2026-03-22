@@ -1,0 +1,56 @@
+Three-tier application 
+https://https://github.com/cloud-blitz/EasyCRUD 
+Create databases 
+Create instance   
+apt update 
+apt install mariadb-client -y 
+mysql –version 
+mysql -h [End Point past] -u admin –p[password] 
+i) Show databases; 
+ii) Create database [database name]; 
+iii) Show databases; 
+iv) exit 
+git clone https://github.com/cloud-blitz/EasyCRUD.git   
+C: create   R: read   U: update D: delete                              
+Backend                                                                                                                              
+apt update && apt install openjdk-17-jdk -y                                                        
+java -version 
+apt install maven -y 
+mvn -version 
+cd EasyCRUD 
+vim backend/src/main/resources/application.properties 
+changes this: 
+server.port=8080 
+spring.datasource.url=jdbc:mariadb://<End point>:3306/<Database  name> 
+spring.datasource.username=<admin> 
+spring.datasource.password=<password> 
+: wq 
+cd backend 
+mvn clean package 
+ls 
+ls  target 
+java -jar target/student-registration-backend-0.0.1-SNAPSHOT.jar 
+http:// [instance public ip past]:8080 
+Frontend 
+sudo -i 
+cd EasyCRUD 
+cd frontend 
+apt install nodejs npm -y 
+npm install 
+ls -a 
+vim .env 
+changes this :  
+VITE_API_URL=http://[backend instance public ip past]:8080/api 
+VITE_API_BASE_URL=http://[instance public ip past]:8080 
+VITE_APP_TITLE=EasyCRUD Student Registration 
+: wq 
+npm run dev 
+npm run build 
+ls -a 
+cd dist 
+apt install apache2 -y 
+systemctl start apache2 
+systemctl enable apache2 
+systemctl status apache2 
+cp -rf ./* /var/www/html/ 
+hit  [Instances public ip ]
