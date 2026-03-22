@@ -1,0 +1,21 @@
+1) create a template 
+   (select auto scaling)
+advanced details:- #!/bin/bash (shell script)
+2) create auto-scaling group 
+1= name 
+2=select template 
+3= select vpc 
+4= select all az
+5= balanced besteffort.
+6= load balancing-skip
+7= desired,min,max,select,capacity
+8=select target traking scaling policy 
+9=then notification, tags, review-skip
+10=done, created asg group
+
+then connect to in instance new to terminal (to add stress or load ) follow instuction
+
+apt install stress 
+stress --help
+stress --cpu 80 --timeout 10s & 
+(added&its run in background).
