@@ -1,0 +1,17 @@
+Step 1- take a Code from-free css template.
+
+step 2- make a folder (directory) of that code
+
+Step 3-upload that file or directory to the bucket
+
+      off -all public access.
+
+      enable-ACL
+
+     ce-volurr
+
+Step 4-select the uploaded files--> Action's--> make public using ACL
+
+step 5-properties-->Static webhost---> edit---> index docume---> index.html--->error(error.html) ---> save changes.
+
+step6:- Copy DNS Name --->paste an web done.
